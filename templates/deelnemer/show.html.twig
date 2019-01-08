@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Deelnemer{% endblock %}
+
+{% block body %}
+    <h1>Deelnemer</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ deelnemer.id }}</td>
+            </tr>
+            <tr>
+                <th>First_name</th>
+                <td>{{ deelnemer.firstName }}</td>
+            </tr>
+            <tr>
+                <th>Insertion_name</th>
+                <td>{{ deelnemer.insertionName }}</td>
+            </tr>
+            <tr>
+                <th>Last_name</th>
+                <td>{{ deelnemer.lastName }}</td>
+            </tr>
+            <tr>
+                <th>Adress</th>
+                <td>{{ deelnemer.adress }}</td>
+            </tr>
+            <tr>
+                <th>Zip</th>
+                <td>{{ deelnemer.zip }}</td>
+            </tr>
+            <tr>
+                <th>City</th>
+                <td>{{ deelnemer.city }}</td>
+            </tr>
+            <tr>
+                <th>Verzekering</th>
+                <td>{{ deelnemer.verzekering ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>Tel_nr</th>
+                <td>{{ deelnemer.telNr }}</td>
+            </tr>
+            <tr>
+                <th>Mobile_nr</th>
+                <td>{{ deelnemer.mobileNr }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('deelnemer_index') }}">back to list</a>
+
+    <a href="{{ path('deelnemer_edit', {'id': deelnemer.id}) }}">edit</a>
+
+    {{ include('deelnemer/_delete_form.html.twig') }}
+{% endblock %}

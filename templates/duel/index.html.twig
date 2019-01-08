@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Duel index{% endblock %}
+
+{% block body %}
+    <h1>Duel index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Winst</th>
+                <th>Ronde</th>
+                <th>Score</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for duel in duels %}
+            <tr>
+                <td>{{ duel.id }}</td>
+                <td>{{ duel.winst ? 'Yes' : 'No' }}</td>
+                <td>{{ duel.ronde }}</td>
+                <td>{{ duel.score }}</td>
+                <td>
+                    <a href="{{ path('duel_show', {'id': duel.id}) }}">show</a>
+                    <a href="{{ path('duel_edit', {'id': duel.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('duel_new') }}">Create new</a>
+{% endblock %}

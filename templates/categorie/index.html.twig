@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Categorie index{% endblock %}
+
+{% block body %}
+    <h1>Categorie index</h1>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Omschrijving</th>
+            {% if is_granted("ROLE_ADMIN") %}
+                <th>actions</th>
+            {% endif %}
+        </tr>
+        </thead>
+        <tbody>
+        {% for categorie in categories %}
+            <tr>
+                <td>{{ categorie.id }}</td>
+                <td>{{ categorie.omschrijving }}</td>
+                {% if is_granted("ROLE_ADMIN") %}
+                    <td>
+                        <a href="{{ path('categorie_show', {'id': categorie.id}) }}">show</a>
+                        <a href="{{ path('categorie_edit', {'id': categorie.id}) }}">edit</a>
+                    </td>
+                {% endif %}
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('categorie_new') }}">Create new</a>
+{% endblock %}

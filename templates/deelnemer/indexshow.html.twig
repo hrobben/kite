@@ -1,0 +1,68 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Deelnemer index{% endblock %}
+
+{% block body %}
+    <h1>Deelnemer index</h1>
+
+    <table class="table" id="lijst">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>First_name</th>
+                <th>Insertion_name</th>
+                <th>Last_name</th>
+                <th>Verzekering</th>
+                <th>Mobile_nr</th>
+                <th>Categorie</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for deelnemer in deelnemers %}
+            <tr>
+                <td>{{ deelnemer.id }}</td>
+                <td>{{ deelnemer.firstName }}</td>
+                <td>{{ deelnemer.insertionName }}</td>
+                <td>{{ deelnemer.lastName }}</td>
+                <td>{{ deelnemer.verzekering ? 'Yes' : 'No' }}</td>
+                <td>{{ deelnemer.mobileNr }}</td>
+                <td>{{ deelnemer.categorieid }}</td>
+                <td>
+                    <a href="{{ path('deelnemer_show', {'id': deelnemer.id}) }}">show</a>
+                    <a href="{{ path('deelnemer_edit', {'id': deelnemer.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="11">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('deelnemer_new') }}">Create new</a>
+
+{% endblock %}
+
+{% block javascripts %}
+    <script type="text/javascript" charset="utf-8">
+        $(document).ready(function () {
+            var table = $('#lijst').DataTable({
+                /*
+                                buttons: [
+                                    'copy', 'excel', 'pdf'
+                                ],
+                */
+                stateSave: true
+            });
+
+            /*
+                        table.buttons().container()
+                            .appendTo($('.col-sm-6:eq(0)', table.table().container()));
+            */
+
+            $('.dropdown-toggle').dropdown();
+        });
+    </script>
+{% endblock %}
